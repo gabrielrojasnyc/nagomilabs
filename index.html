@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>NAGOMI LABS – Coming Soon</title>
+<title>Nagomi Labs – Coming Soon</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
 <style>
@@ -12,91 +12,34 @@
     --blush: #D95F66;
     --bg: #F8F6F2;
   }
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Space Grotesk', sans-serif;
-    color: var(--navy);
-  }
-  body {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg);
-    text-align: center;
-    padding: 2rem;
-  }
-  h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    margin-bottom: 1rem;
-  }
-  p.tag {
-    font-size: clamp(1.1rem, 2vw, 1.3rem);
-    margin-bottom: 2.5rem;
-  }
-  .logo {
-    width: 120px;
-    margin: 0 auto 2rem auto;
-  }
-  .countdown {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-bottom: 2.5rem;
-  }
-  .countdown .box {
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 1rem 1.5rem;
-    min-width: 80px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  }
-  .countdown .box span {
-    display: block;
-    font-size: 2rem;
-    font-weight: 700;
-  }
-  .countdown .box label {
-    font-size: 0.8rem;
-    opacity: 0.7;
-  }
-  .btns {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-  }
-  .btn {
-    border: 2px solid var(--navy);
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: 0.2s all;
-  }
-  .btn.primary {
-    background: var(--navy);
-    color: #ffffff;
-  }
-  .btn:hover {
-    transform: translateY(-2px);
-  }
-  footer {
-    position: absolute;
-    bottom: 1rem;
-    left: 0;
-    right: 0;
-    font-size: 0.8rem;
-    opacity: 0.5;
-  }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Space Grotesk', sans-serif; color: var(--navy);}  
+  body { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem; background: var(--bg) url('friendly-faded-robots.png') repeat; }
+  h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1rem; }
+  p.tag { font-size: clamp(1.1rem, 2vw, 1.3rem); margin-bottom: 2.5rem; line-height: 1.4; }
+  p.tag .sub { font-size: 0.9em; font-weight: 400; display: block; margin-top: 0.25rem; }
+  .logo { width: 120px; margin: 0 auto 2rem auto; }
+  .countdown { display: flex; gap: 1rem; justify-content: center; margin-bottom: 2.5rem; }
+  .countdown .box { background: #ffffff; border-radius: 12px; padding: 1rem 1.5rem; min-width: 80px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);}  
+  .countdown .box span { display: block; font-size: 2rem; font-weight: 700; }
+  .countdown .box label { font-size: 0.8rem; opacity: 0.7; }
+  .btns { display: flex; gap: 1rem; justify-content: center; }
+  .btn { border: 2px solid var(--navy); padding: 0.75rem 1.5rem; font-size: 1rem; border-radius: 8px; text-decoration: none; transition: 0.2s all; }
+  .btn.primary { background: var(--navy); color: #ffffff; }
+  .btn:hover { transform: translateY(-2px); }
+  footer { position: absolute; bottom: 1rem; left: 0; right: 0; font-size: 0.8rem; opacity: 0.5; }
+  /* === modal === */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .3s ease; z-index: 999; }
+  .modal-overlay.show { opacity: 1; pointer-events: auto; }
+  .modal { position: relative; background: #ffffff; border-radius: 16px; padding: 2rem 2.5rem; width: 90%; max-width: 440px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+  .modal h2 { margin-bottom: 1rem; font-size: 1.5rem; }
+  .modal-close { position: absolute; top: .5rem; right: .75rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--navy); }
 </style>
 </head>
 <body>
   <main>
     <img src="nagomi_labs.png" class="logo" alt="Nagomi Labs logo" />
     <h1>Coming&nbsp;Soon</h1>
-     <p class="tag">
+    <p class="tag">
       Bringing harmony to <strong>HR&nbsp;TECH</strong><br>
       <span class="sub">AI agents that certify every HCM release, guard privacy, and surface payroll anomalies in real time.</span>
     </p>
@@ -110,27 +53,35 @@
 
     <div class="btns">
       <a href="mailto:hello@nagomilabs.com" class="btn primary">Contact&nbsp;Us</a>
-      <a href="#about" class="btn">About&nbsp;Us</a>
+      <button type="button" class="btn about" id="aboutBtn">About&nbsp;Us</button>
     </div>
   </main>
 
-  <footer>&copy; <span id="year"></span> NAGOMI LABS</footer>
+  <!-- Modal -->
+  <div class="modal-overlay" id="aboutModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <h2 id="modalTitle">About&nbsp;Nagomi&nbsp;Labs</h2>
+      <p id="modalDesc">Nagomi Labs brings harmony to HR technology. Our autonomous AI agents certify every HCM release, safeguard employee‑data privacy, and detect payroll anomalies in real time—shrinking implementation timelines from months to weeks.</p>
+    </div>
+  </div>
+
+  <footer>&copy; <span id="year"></span> Nagomi Labs</footer>
 
   <script>
-    // === simple countdown ===
-    const launchDate = new Date('2025-10-19T00:00:00Z').getTime(); // adjust as needed
+    // === countdown ===
+    const launchDate = new Date('2025-06-30T00:00:00Z').getTime();
     const daysEl = document.getElementById('days');
     const hoursEl = document.getElementById('hours');
     const minutesElement = document.getElementById('minutesEl');
     const secondsEl = document.getElementById('seconds');
     const yearEl = document.getElementById('year');
-
     function updateCountdown() {
-      const now = new Date().getTime();
+      const now = Date.now();
       const distance = launchDate - now;
-      const day = 1000 * 60 * 60 * 24;
-      const hour = 1000 * 60 * 60;
-      const minute = 1000 * 60;
+      const day = 86400000; // ms in a day
+      const hour = 3600000;
+      const minute = 60000;
       if (distance < 0) {
         document.getElementById('countdown').style.display = 'none';
         return;
@@ -143,6 +94,28 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
     yearEl.textContent = new Date().getFullYear();
+
+    // === modal logic ===
+    const aboutBtn = document.getElementById('aboutBtn');
+    const aboutModal = document.getElementById('aboutModal');
+    const closeBtn = aboutModal.querySelector('.modal-close');
+
+    function openModal() {
+      aboutModal.classList.add('show');
+      aboutModal.setAttribute('aria-hidden', 'false');
+    }
+    function closeModal() {
+      aboutModal.classList.remove('show');
+      aboutModal.setAttribute('aria-hidden', 'true');
+    }
+    aboutBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    aboutModal.addEventListener('click', (e) => {
+      if (e.target === aboutModal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && aboutModal.classList.contains('show')) closeModal();
+    });
   </script>
 </body>
 </html>
