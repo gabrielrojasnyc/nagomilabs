@@ -16,7 +16,7 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Space Grotesk', sans-serif; color: var(--navy);}  
   body { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem; background: var(--bg) url('friendly-faded-robots.png') repeat; }
-  h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1rem; }
+  h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 0.5rem; }
   p.tag { font-size: clamp(1.1rem, 2vw, 1.3rem); margin-bottom: 2.5rem; line-height: 1.4; }
   p.tag .sub { font-size: 0.9em; font-weight: 400; display: block; margin-top: 0.25rem; }
   .logo { width: 120px; margin: 0 auto 2rem auto; }
@@ -43,6 +43,33 @@
     width: 120px; /* smaller icon */
     pointer-events: none;
   }
+  /* rotating text animation */
+  .rotating-text {
+    height: 6rem;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .rotating-text span {
+    display: block;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 500;
+    color: var(--blush);
+    opacity: 0;
+    transform: translateY(100%);
+    transition: all 0.5s ease-in-out;
+    position: absolute;
+  }
+  .rotating-text span.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .rotating-text span.up {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
 </style>
 </head>
 <body>
@@ -51,9 +78,14 @@
     <img src="robot-face.png" class="corner-bot" alt="Friendly robot icon" />
     <img src="nagomi_labs.png" class="logo" alt="Nagomi Labs logo" />
     <h1>Coming&nbsp;Soon</h1>
+    <div class="rotating-text">
+      <span class="show">HCM Release Quality</span>
+      <span>Guard Privacy</span>
+      <span>Compliance</span>
+      <span>Payroll Anomalies</span>
+    </div>
     <p class="tag">
-      Bringing harmony to <strong>HR&nbsp;TECH</strong><br>
-      <span class="sub">AI agents that certify every HCM release, guard privacy, and surface payroll anomalies in real time.</span>
+      <strong>AI&nbsp;Agents</strong> Conducting a Symphony of HR <strong>Harmony</strong>
     </p>
 
     <div class="countdown" id="countdown">
@@ -106,6 +138,24 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
     yearEl.textContent = new Date().getFullYear();
+
+    // === rotating text animation ===
+    const phrases = document.querySelectorAll('.rotating-text span');
+    let currentPhrase = 0;
+    
+    function rotateText() {
+      phrases[currentPhrase].classList.remove('show');
+      phrases[currentPhrase].classList.add('up');
+      
+      currentPhrase = (currentPhrase + 1) % phrases.length;
+      
+      setTimeout(() => {
+        phrases.forEach(phrase => phrase.classList.remove('up'));
+        phrases[currentPhrase].classList.add('show');
+      }, 250);
+    }
+    
+    setInterval(rotateText, 3000);
 
     // === modal logic ===
     const aboutBtn = document.getElementById('aboutBtn');
