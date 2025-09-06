@@ -72,18 +72,15 @@ Notes:
 
 ## Deployment (GitHub Pages)
 
-This repository is configured for GitHub Pages with a custom domain (`CNAME`). Because Vite outputs built assets to `dist/`, you’ll typically deploy one of two ways:
+This repository is configured to deploy from `main` → `/docs` with a custom domain (`nagomilabs.ai`). Vite is set to output directly to `docs/` (see `vite.config.ts`), and the `CNAME` lives in `public/` so it’s copied into the build automatically.
 
-1) GitHub Actions (recommended)
-- Add a simple workflow that builds with `npm ci && npm run build` and publishes `dist/` to the `gh-pages` branch.
-- Set Pages source to `gh-pages`.
+Deploy steps:
+- Merge to `main` (or push to `main`).
+- GitHub Pages publishes from `main` → `/docs`.
+- `CNAME` is included in `docs/` automatically; HTTPS is enforced.
 
-2) Docs folder (manual)
-- Run `npm run build`.
-- Copy contents of `dist/` into a `/docs` folder and commit.
-- Set Pages source to “Deploy from branch” → “/docs”.
-
-Ensure the `CNAME` file is preserved at the root of the published output so your domain continues to resolve.
+Optional (CI alternative):
+- You can use a workflow to build and publish to a `gh-pages` branch, but it isn’t required with the current `/docs` setup.
 
 ## Contact
 
