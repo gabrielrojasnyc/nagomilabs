@@ -19,23 +19,27 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
     seconds: 0
   });
   useEffect(() => {
-    const calculateTimeLeft = () => {
-      const difference = targetDate.getTime() - new Date().getTime();
-      if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(difference / (1000 * 60 * 60) % 24);
-        const minutes = Math.floor(difference / 1000 / 60 % 60);
-        const seconds = Math.floor(difference / 1000 % 60);
-        setTimeLeft({
-          days,
-          hours,
-          minutes,
-          seconds
-        });
+    const tick = () => {
+      const difference = targetDate.getTime() - Date.now();
+      if (difference <= 0) {
+        // Ensure we show zeros and stop ticking once target is reached
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        return false;
       }
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(difference / (1000 * 60 * 60) % 24);
+      const minutes = Math.floor(difference / 1000 / 60 % 60);
+      const seconds = Math.floor(difference / 1000 % 60);
+      setTimeLeft({ days, hours, minutes, seconds });
+      return true;
     };
-    calculateTimeLeft();
-    const timer = setInterval(calculateTimeLeft, 1000);
+    // Initial tick; if already past, bail early (effect cleanup returns no interval)
+    const shouldContinue = tick();
+    if (!shouldContinue) return;
+    const timer = setInterval(() => {
+      const cont = tick();
+      if (!cont) clearInterval(timer);
+    }, 1000);
     return () => clearInterval(timer);
   }, [targetDate]);
   const timeBlocks = [{
