@@ -1,5 +1,7 @@
 # Nagomi Labs – AI Agents for HCM Harmony
 
+![CI](https://github.com/gabrielrojasnyc/nagomilabs/actions/workflows/ci.yml/badge.svg)
+
 Coming-soon landing page for HR practitioners. AI Agents that certify HCM releases, guard privacy, and catch payroll anomalies—so people can focus on people.
 
 ## Overview
