@@ -67,18 +67,18 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
       delay: index * 0.1 + 0.5
     }}>
           <div className="absolute inset-0 bg-[#e47168] rounded-[30px] transform rotate-3 opacity-10 blur-sm" aria-hidden="true"></div>
-          <div className="relative flex flex-col items-center p-6 w-28 h-28" style={{
-        background: `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.03) 100%)`,
+          <div className="relative flex flex-col items-center p-6 w-28 h-28 border border-[#e9ddc3]/20" style={{
+        background: `linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)`,
         borderRadius: '30px 15px 25px 20px',
         boxShadow: `
-                0 4px 15px rgba(0,0,0,0.2),
-                inset 0 1px 1px rgba(255,255,255,0.15),
-                inset 0 -1px 1px rgba(0,0,0,0.15)
+                0 10px 30px rgba(0,0,0,0.2),
+                inset 0 1px 1px rgba(255,255,255,0.2),
+                inset 0 -1px 1px rgba(0,0,0,0.1)
               `,
-        backdropFilter: 'blur(5px)',
+        backdropFilter: 'blur(10px)',
         transform: `rotate(${index % 2 === 0 ? -2 : 2}deg)`
       }}>
-            <motion.div className="text-4xl font-light text-[#f8d0c9] font-['Gill_Sans'] mb-1" animate={{
+            <motion.div className="text-4xl font-medium text-[#f8d0c9] font-['Space_Grotesk'] mb-1 tracking-wider" animate={{
           scale: [1, 1.05, 1],
           opacity: [0.9, 1, 0.9]
         }} transition={{
@@ -90,7 +90,7 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
         }}>
               {block.value}
             </motion.div>
-            <div className="text-sm text-[#e9ddc3] font-['Gill_Sans'] opacity-80">
+            <div className="text-sm text-[#e9ddc3] font-['Outfit'] opacity-80 uppercase tracking-widest text-xs">
               {block.label}
             </div>
           </div>

@@ -13,14 +13,14 @@ export const BiomorphicButton: React.FC<BiomorphicButtonProps> = ({
   href
 }) => {
   const className = `
-        relative px-10 py-4 text-lg font-['Gill_Sans'] inline-block
-        ${primary ? 'bg-[#e47168] text-[#0a253a]' : 'bg-transparent text-[#e9ddc3] border-2 border-[#e9ddc3]'}
+        relative px-10 py-4 text-lg font-['Space_Grotesk'] font-medium inline-block tracking-wide
+        ${primary ? 'bg-[#e47168] text-[#0a253a]' : 'bg-transparent text-[#e9ddc3] border border-[#e9ddc3]/50 backdrop-blur-sm'}
         overflow-hidden cursor-pointer
       `;
 
   const style = {
     borderRadius: '30px 15px 25px 20px',
-    boxShadow: primary ? '0 4px 15px rgba(228, 113, 104, 0.3), inset 0 1px 1px rgba(255,255,255,0.2)' : '0 4px 15px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.1)'
+    boxShadow: primary ? '0 8px 30px rgba(228, 113, 104, 0.4), inset 0 1px 1px rgba(255,255,255,0.3)' : '0 8px 30px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.15)'
   };
 
   const animationProps = {

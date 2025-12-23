@@ -58,7 +58,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
             transition={{ type: 'spring', stiffness: 260, damping: 22 }}
           >
             <div className="flex items-start justify-between gap-4">
-              <h2 id="about-title" className="font-['Gill_Sans'] text-2xl sm:text-3xl font-bold text-[#e47168]">
+              <h2 id="about-title" className="font-['Space_Grotesk'] text-2xl sm:text-3xl font-bold text-[#e47168] tracking-tight">
                 About Nagomi Labs
               </h2>
               <button
@@ -71,7 +71,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
               </button>
             </div>
 
-            <div className="mt-4 space-y-4 text-[#e9ddc3] font-['Gill_Sans'] leading-relaxed">
+            <div className="mt-4 space-y-4 text-[#e9ddc3] font-['Outfit'] leading-relaxed text-lg">
               <p>
                 Ever watched a whole afternoon vanish into <span className="font-semibold">certifying a release</span>? Screenshots,
                 evidence, regression runs, version diffs… and then someone says, “one more pass.” We’ve been there.
@@ -99,7 +99,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
             <div className="mt-6 flex justify-end">
               <button
                 onClick={onClose}
-                className="font-['Gill_Sans'] rounded-lg border border-[#e9ddc3] px-4 py-2 text-[#e9ddc3] hover:bg-white/10 transition-colors"
+                className="font-['Outfit'] rounded-lg border border-[#e9ddc3] px-4 py-2 text-[#e9ddc3] hover:bg-white/10 transition-colors"
               >
                 Close
               </button>
