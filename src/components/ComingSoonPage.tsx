@@ -26,8 +26,10 @@ export const ComingSoonPage: React.FC<ComingSoonPageProps> = ({
       }
     });
   }, [controls]);
-  return <div className="relative flex flex-col items-center justify-between min-h-screen w-full bg-gradient-to-br from-[#1a4d6e] via-[#0d2f45] to-[#0a253a] overflow-hidden">
-      <VinePattern className="absolute inset-0 z-0 opacity-15" />
+  return <div className="relative flex flex-col items-center justify-between min-h-screen w-full bg-[#0a253a] overflow-hidden">
+      <div className="absolute inset-0 z-0 bg-[radial_gradient(circle_at_50%_0%,_#1a4d6e_0%,_#0a253a_60%)] opacity-80" />
+      <div className="absolute inset-0 z-0 bg-[radial_gradient(circle_at_0%_100%,_#1a4d6e_0%,_transparent_40%)] opacity-40" />
+      <VinePattern className="absolute inset-0 z-0 opacity-10" />
       <motion.div className="absolute top-6 right-6 z-10" initial={{
       opacity: 0,
       scale: 0.8
@@ -86,7 +88,7 @@ export const ComingSoonPage: React.FC<ComingSoonPageProps> = ({
             </svg>
           </motion.div>
         </motion.div>
-        <motion.h1 className="font-['Gill_Sans'] text-5xl font-light text-center text-[#f8d0c9] mb-4" initial={{
+        <motion.h1 className="font-['Space_Grotesk'] text-5xl font-normal text-center text-[#f8d0c9] mb-4 tracking-tight" initial={{
         opacity: 0,
         y: 20
       }} animate={{
@@ -98,7 +100,7 @@ export const ComingSoonPage: React.FC<ComingSoonPageProps> = ({
       }}>
           Coming Soon
         </motion.h1>
-        <motion.h2 className="font-['Gill_Sans'] text-6xl font-bold text-center text-[#e47168] mb-8" initial={{
+        <motion.h2 className="font-['Space_Grotesk'] text-6xl font-bold text-center text-[#e47168] mb-8 tracking-tight" initial={{
         opacity: 0,
         y: 20
       }} animate={{
@@ -110,7 +112,7 @@ export const ComingSoonPage: React.FC<ComingSoonPageProps> = ({
       }}>
           {productName}
         </motion.h2>
-        <motion.p className="font-['Gill_Sans'] text-xl text-center text-[#e9ddc3] mb-16 max-w-2xl" initial={{
+        <motion.p className="font-['Outfit'] text-xl text-center text-[#e9ddc3] mb-16 max-w-2xl leading-relaxed" initial={{
         opacity: 0,
         y: 20
       }} animate={{
@@ -123,7 +125,7 @@ export const ComingSoonPage: React.FC<ComingSoonPageProps> = ({
           <span className="font-semibold">AI Agents</span> Conducting a Symphony
           of <span className="font-semibold">HCM Harmony</span>
         </motion.p>
-        <motion.p className="font-['Gill_Sans'] text-lg text-center text-[#e9ddc3]/90 mb-12 max-w-2xl" initial={{
+        <motion.p className="font-['Outfit'] text-lg text-center text-[#e9ddc3]/90 mb-12 max-w-2xl leading-relaxed" initial={{
         opacity: 0,
         y: 20
       }} animate={{
@@ -161,7 +163,7 @@ export const ComingSoonPage: React.FC<ComingSoonPageProps> = ({
           <BiomorphicButton onClick={() => setAboutOpen(true)}>About Us</BiomorphicButton>
         </motion.div>
       </div>
-      <motion.div className="mt-12 mb-6 text-sm text-[#e9ddc3] z-10 font-['Gill_Sans']" initial={{
+      <motion.div className="mt-12 mb-6 text-sm text-[#e9ddc3] z-10 font-['Outfit']" initial={{
       opacity: 0
     }} animate={{
       opacity: 0.7
