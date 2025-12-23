@@ -52,7 +52,9 @@ export const ComingSoonPage: React.FC<ComingSoonPageProps> = ({
           repeatType: 'reverse',
           ease: 'easeInOut'
         }}>
-            <svg viewBox="0 0 100 100" className="w-full h-full">
+            <svg viewBox="0 0 100 100" className="w-full h-full" aria-labelledby="svg-title svg-desc" role="img">
+              <title id="svg-title">Abstract animated shape</title>
+              <desc id="svg-desc">A gently pulsing abstract circular shape representing organic growth and harmony.</desc>
               <motion.path d="M50,10 C70,10 90,30 90,50 C90,70 70,90 50,90 C30,90 10,70 10,50 C10,30 30,10 50,10 Z" fill="none" stroke="#e47168" strokeWidth="3" initial={{
               pathLength: 0
             }} animate={{
@@ -155,9 +157,7 @@ export const ComingSoonPage: React.FC<ComingSoonPageProps> = ({
         duration: 0.8,
         delay: 1
       }}>
-          <BiomorphicButton primary onClick={() => {
-            window.location.href = 'mailto:hello@nagomilabs.com';
-          }}>Contact Us</BiomorphicButton>
+          <BiomorphicButton primary href="mailto:hello@nagomilabs.com">Contact Us</BiomorphicButton>
           <BiomorphicButton onClick={() => setAboutOpen(true)}>About Us</BiomorphicButton>
         </motion.div>
       </div>

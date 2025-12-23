@@ -4,31 +4,45 @@ interface BiomorphicButtonProps {
   children: React.ReactNode;
   primary?: boolean;
   onClick?: () => void;
+  href?: string;
 }
 export const BiomorphicButton: React.FC<BiomorphicButtonProps> = ({
   children,
   primary = false,
-  onClick
+  onClick,
+  href
 }) => {
-  return <motion.button onClick={onClick} className={`
-        relative px-10 py-4 text-lg font-['Gill_Sans'] 
+  const className = `
+        relative px-10 py-4 text-lg font-['Gill_Sans'] inline-block
         ${primary ? 'bg-[#e47168] text-[#0a253a]' : 'bg-transparent text-[#e9ddc3] border-2 border-[#e9ddc3]'}
-        overflow-hidden
-      `} style={{
+        overflow-hidden cursor-pointer
+      `;
+
+  const style = {
     borderRadius: '30px 15px 25px 20px',
     boxShadow: primary ? '0 4px 15px rgba(228, 113, 104, 0.3), inset 0 1px 1px rgba(255,255,255,0.2)' : '0 4px 15px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.1)'
-  }} whileHover="hover" initial="initial" variants={{
-    initial: {
-      scale: 1
+  };
+
+  const animationProps = {
+    whileHover: "hover",
+    initial: "initial",
+    variants: {
+      initial: {
+        scale: 1
+      },
+      hover: {
+        scale: 1.02
+      }
     },
-    hover: {
-      scale: 1.02
+    transition: {
+      type: 'spring',
+      stiffness: 400,
+      damping: 10
     }
-  }} transition={{
-    type: 'spring',
-    stiffness: 400,
-    damping: 10
-  }}>
+  };
+
+  const content = (
+    <>
       <motion.div className="absolute inset-0 w-full h-full" variants={{
       initial: {
         background: primary ? 'linear-gradient(135deg, rgba(228, 113, 104, 1) 0%, rgba(228, 113, 104, 0.9) 100%)' : 'linear-gradient(135deg, rgba(10, 37, 58, 0.1) 0%, rgba(10, 37, 58, 0.05) 100%)'
@@ -75,5 +89,20 @@ export const BiomorphicButton: React.FC<BiomorphicButtonProps> = ({
       stiffness: 300,
       damping: 15
     }} />
-    </motion.button>;
+    </>
+  );
+
+  if (href) {
+    return (
+      <motion.a href={href} className={className} style={style} {...animationProps}>
+        {content}
+      </motion.a>
+    );
+  }
+
+  return (
+    <motion.button onClick={onClick} className={className} style={style} {...animationProps}>
+      {content}
+    </motion.button>
+  );
 };
